@@ -16,6 +16,7 @@ import (
 type TreeItem interface {
 	Text() string    // Text returns the text of the item.
 	ImageIndex() int // ImageIndex is used only if SetImageList is called on the treeview
+	MixedData() interface{}
 }
 
 type treeViewItemInfo struct {
@@ -31,6 +32,7 @@ type StringTreeItem struct {
 
 func (s StringTreeItem) Text() string    { return s.Data }
 func (s StringTreeItem) ImageIndex() int { return s.Image }
+func (s StringTreeItem) MixedData() interface{} { return nil }
 
 type TreeView struct {
 	ControlBase
