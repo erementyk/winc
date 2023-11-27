@@ -162,6 +162,24 @@ func (lv *ListView) AddColumn(caption string, width int) {
 	lv.insertLvColumn(&lc, lv.cols)
 	lv.cols++
 }
+func (lv *ListView) DeleteColumn(pos int) bool{
+	if lv.cols>0{
+		lv.deleteLvColumn(pos)
+		lv.cols--
+		return true
+	}
+	return false
+}
+func (lv *ListView) DeleteAllColumns() bool{
+	if lv.cols>0{
+		for lv.cols>0{
+			lv.deleteLvColumn(lv.cols-1)
+			lv.cols--			
+		}
+		return true
+	}
+	return false
+}
 
 // StretchLastColumn makes the last column take up all remaining horizontal
 // space of the *ListView.
@@ -276,6 +294,10 @@ func (lv *ListView) UpdateItem(item ListItem) bool {
 
 func (lv *ListView) insertLvColumn(lvColumn *w32.LVCOLUMN, iCol int) {
 	w32.SendMessage(lv.hwnd, w32.LVM_INSERTCOLUMN, uintptr(iCol), uintptr(unsafe.Pointer(lvColumn)))
+}
+
+func (lv *ListView) deleteLvColumn(iCol int) {
+	w32.SendMessage(lv.hwnd, w32.LVM_DELETECOLUMN,0, uintptr(iCol))
 }
 
 func (lv *ListView) insertLvItem(lvItem *w32.LVITEM) {
