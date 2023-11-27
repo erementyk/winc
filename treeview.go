@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	"github.com/tadvi/winc/w32"
+	"github.com/erementyk/winc/w32"
 )
 
 // TreeItem represents an item in a TreeView widget.
@@ -30,8 +30,8 @@ type StringTreeItem struct {
 	Image int
 }
 
-func (s StringTreeItem) Text() string    { return s.Data }
-func (s StringTreeItem) ImageIndex() int { return s.Image }
+func (s StringTreeItem) Text() string           { return s.Data }
+func (s StringTreeItem) ImageIndex() int        { return s.Image }
 func (s StringTreeItem) MixedData() interface{} { return nil }
 
 type TreeView struct {

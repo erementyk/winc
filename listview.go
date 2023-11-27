@@ -10,7 +10,7 @@ import (
 	"syscall"
 	"unsafe"
 
-	"github.com/tadvi/winc/w32"
+	"github.com/erementyk/winc/w32"
 )
 
 // ListItem represents an item in a ListView widget.
@@ -162,19 +162,19 @@ func (lv *ListView) AddColumn(caption string, width int) {
 	lv.insertLvColumn(&lc, lv.cols)
 	lv.cols++
 }
-func (lv *ListView) DeleteColumn(pos int) bool{
-	if lv.cols>0{
+func (lv *ListView) DeleteColumn(pos int) bool {
+	if lv.cols > 0 {
 		lv.deleteLvColumn(pos)
 		lv.cols--
 		return true
 	}
 	return false
 }
-func (lv *ListView) DeleteAllColumns() bool{
-	if lv.cols>0{
-		for lv.cols>0{
-			lv.deleteLvColumn(lv.cols-1)
-			lv.cols--			
+func (lv *ListView) DeleteAllColumns() bool {
+	if lv.cols > 0 {
+		for lv.cols > 0 {
+			lv.deleteLvColumn(lv.cols - 1)
+			lv.cols--
 		}
 		return true
 	}
@@ -297,7 +297,7 @@ func (lv *ListView) insertLvColumn(lvColumn *w32.LVCOLUMN, iCol int) {
 }
 
 func (lv *ListView) deleteLvColumn(iCol int) {
-	w32.SendMessage(lv.hwnd, w32.LVM_DELETECOLUMN,0, uintptr(iCol))
+	w32.SendMessage(lv.hwnd, w32.LVM_DELETECOLUMN, 0, uintptr(iCol))
 }
 
 func (lv *ListView) insertLvItem(lvItem *w32.LVITEM) {

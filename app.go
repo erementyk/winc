@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"unsafe"
 
-	"github.com/tadvi/winc/w32"
+	"github.com/erementyk/winc/w32"
 )
 
 var (
